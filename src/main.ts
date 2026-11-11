@@ -39,7 +39,6 @@ async function refresh(): Promise<void> {
 const sharePanel = new SharePanel({
   fileButton: byId('share-file'),
   copyButton: byId('copy-caption'),
-  links: byId('share-links'),
   status: byId('share-status'),
 });
 

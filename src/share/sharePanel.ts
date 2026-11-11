@@ -1,10 +1,9 @@
 import type { Players } from '../render/painter';
-import { shareCaption, shareLinks } from './shareLinks';
+import { shareCaption } from './shareCaption';
 
 export interface ShareElements {
   fileButton: HTMLButtonElement;
   copyButton: HTMLButtonElement;
-  links: HTMLElement;
   status: HTMLElement;
 }
 
@@ -20,10 +19,12 @@ export class SharePanel {
   show(file: File, players: Players): void {
     this.file = file;
     this.caption = shareCaption(players);
-    this.elements.fileButton.hidden = !canShare(file);
+    const shareable = canShare(file);
+    this.elements.fileButton.hidden = !shareable;
     this.elements.fileButton.textContent = `Share ${file.type === 'image/gif' ? 'GIF' : 'video'}`;
-    this.elements.links.replaceChildren(...shareLinks(players).map(linkButton));
-    this.elements.status.textContent = '';
+    this.elements.status.textContent = shareable
+      ? ''
+      : 'This browser cannot share files. Open the editor on your phone to share straight into an app.';
   }
 
   private async shareFile(): Promise<void> {
@@ -47,14 +48,4 @@ export class SharePanel {
 
 function canShare(file: File): boolean {
   return typeof navigator.canShare === 'function' && navigator.canShare({ files: [file] });
-}
-
-function linkButton(link: { name: string; href: string }): HTMLAnchorElement {
-  return Object.assign(document.createElement('a'), {
-    href: link.href,
-    textContent: link.name,
-    target: '_blank',
-    rel: 'noopener',
-    className: 'share-link',
-  });
 }

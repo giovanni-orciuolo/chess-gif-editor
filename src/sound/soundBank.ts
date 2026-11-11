@@ -68,9 +68,9 @@ const recipes: Record<Sound, Recipe> = {
 };
 
 export class SoundBank {
-  private constructor(private readonly buffers: Map<Sound, AudioBuffer>) {}
+  constructor(private readonly buffers: Map<Sound, AudioBuffer>) {}
 
-  static async create(): Promise<SoundBank> {
+  static async synthesizeWood(): Promise<SoundBank> {
     const entries = await Promise.all(
       Object.entries(recipes).map(async ([sound, recipe]) => [sound as Sound, await synthesize(sound as Sound, recipe)] as const),
     );

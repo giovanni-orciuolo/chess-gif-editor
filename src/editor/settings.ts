@@ -1,6 +1,7 @@
 import type { EasingName } from '../animation/easing';
 import type { Timing } from '../animation/timeline';
 import type { Look } from '../render/painter';
+import type { SoundSet } from '../sound/soundLibrary';
 import { boardThemes } from '../render/theme';
 
 export type Format = 'mp4' | 'gif';
@@ -14,6 +15,7 @@ export interface Settings {
   playerBars: boolean;
   sound: boolean;
   volume: number;
+  soundSet: SoundSet;
   firstPly: number;
   lastPly: number;
   format: Format;
@@ -28,6 +30,7 @@ export const defaultSettings: Settings = {
   playerBars: true,
   sound: true,
   volume: 0.8,
+  soundSet: 'sfx',
   firstPly: 1,
   lastPly: 999,
   format: 'mp4',

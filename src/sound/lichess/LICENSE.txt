@@ -1,0 +1,4 @@
+The sound sets in this folder (futuristic, nes, piano, sfx) come from Lichess
+(https://github.com/lichess-org/lila, public/sound). They were made by Enigmahack
+(https://github.com/Enigmahack) and are licensed under the GNU Affero General
+Public License, version 3 or later.

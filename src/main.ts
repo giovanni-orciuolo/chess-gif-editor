@@ -6,6 +6,7 @@ import { loadSettings, saveSettings } from './editor/settings';
 import { SettingsForm } from './editor/settingsForm';
 import { Movie } from './export/movie';
 import { PieceSet } from './render/pieceSet';
+import { SharePanel } from './share/sharePanel';
 import { SoundLibrary } from './sound/soundLibrary';
 
 const byId = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
@@ -35,6 +36,13 @@ async function refresh(): Promise<void> {
   preview.show(movie);
 }
 
+const sharePanel = new SharePanel({
+  fileButton: byId('share-file'),
+  copyButton: byId('copy-caption'),
+  links: byId('share-links'),
+  status: byId('share-status'),
+});
+
 new ExportPanel(
   {
     exportButton: byId('export'),
@@ -46,6 +54,7 @@ new ExportPanel(
     media: byId('result-media'),
   },
   () => movie && { movie, format: form.read().format, name: gameInput.fileName },
+  (file) => gameInput.game && sharePanel.show(file, gameInput.game.players),
 );
 
 form.write(loadSettings());

@@ -171,11 +171,11 @@
             </label>
             <label>Sounds
               <select name="soundSet">
+                <option value="pychess">PyChess</option>
                 <option value="sfx">Lichess SFX</option>
                 <option value="piano">Lichess Piano</option>
                 <option value="nes">Lichess NES</option>
                 <option value="futuristic">Lichess Futuristic</option>
-                <option value="pychess">PyChess</option>
                 <option value="wood">Wood (synthesized)</option>
               </select>
             </label>
@@ -211,6 +211,15 @@
         <p class="message" id="export-status" role="status"></p>
         <div id="result" class="result" hidden>
           <a id="download" class="button primary" download>Download</a>
+          <div class="share" aria-label="Share">
+            <div class="share-actions">
+              <button type="button" id="share-file" class="primary" hidden>Share video</button>
+              <button type="button" id="copy-caption" class="secondary">Copy caption</button>
+            </div>
+            <p class="share-hint">Share a link to the editor, then attach the file you downloaded:</p>
+            <div id="share-links" class="share-links"></div>
+            <p class="message" id="share-status" role="status"></p>
+          </div>
           <div id="result-media"></div>
         </div>
       </section>

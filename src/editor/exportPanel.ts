@@ -23,6 +23,7 @@ export class ExportPanel {
   constructor(
     private readonly elements: ExportElements,
     private readonly current: () => { movie: Movie; format: Format; name: string } | undefined,
+    private readonly onExported: (file: File) => void,
   ) {
     elements.exportButton.addEventListener('click', () => void this.run());
     elements.cancelButton.addEventListener('click', () => this.running?.abort());
@@ -67,6 +68,7 @@ export class ExportPanel {
     this.elements.media.replaceChildren(mediaFor(blob.type, this.resultUrl));
     this.elements.result.hidden = false;
     this.elements.status.textContent = `Done in ${(elapsedMs / 1000).toFixed(1)} s.`;
+    this.onExported(new File([blob], fileName, { type: blob.type }));
   }
 }
 

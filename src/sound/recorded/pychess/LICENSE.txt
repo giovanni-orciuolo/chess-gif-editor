@@ -1,0 +1,3 @@
+The sounds in this folder come from PyChess (https://github.com/pychess/pychess,
+sounds/). PyChess is licensed under the GNU General Public License, version 3,
+which may be combined with this AGPL-3.0 project.

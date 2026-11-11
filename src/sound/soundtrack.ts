@@ -4,7 +4,9 @@ import type { SoundCue } from './soundCues';
 export function renderSoundtrack(bank: SoundBank, cues: SoundCue[], durationMs: number, volume: number): Promise<AudioBuffer> {
   const context = new OfflineAudioContext(1, Math.ceil((sampleRate * durationMs) / 1000), sampleRate);
   const output = new GainNode(context, { gain: volume });
-  output.connect(context.destination);
+  // Check and game-end sounds land together on mate; the limiter keeps their sum from clipping.
+  const limiter = new DynamicsCompressorNode(context, { threshold: -3, knee: 0, ratio: 20, attack: 0.001, release: 0.1 });
+  output.connect(limiter).connect(context.destination);
   for (const cue of cues) {
     const source = new AudioBufferSourceNode(context, { buffer: bank.buffer(cue.sound) });
     source.connect(output);

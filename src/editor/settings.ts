@@ -30,7 +30,7 @@ export const defaultSettings: Settings = {
   playerBars: true,
   sound: true,
   volume: 0.8,
-  soundSet: 'sfx',
+  soundSet: 'pychess',
   firstPly: 1,
   lastPly: 999,
   format: 'mp4',

@@ -174,15 +174,19 @@
       </form>
 
       <section class="stage">
-        <div class="canvas-frame"><canvas id="preview" aria-label="Animated board preview"></canvas></div>
+        <div class="canvas-frame">
+          <canvas id="preview" aria-label="Animated board preview"></canvas>
+          <div class="sound-controls">
+            <input type="range" name="volume" form="settings" class="volume" min="0" max="1" step="0.05" aria-label="Volume" />
+            <label class="sound-toggle" title="Sound in the preview and the MP4">
+              <input type="checkbox" name="sound" form="settings" aria-label="Sound" />
+            </label>
+          </div>
+        </div>
         <div class="transport">
           <button type="button" id="play" class="icon" aria-label="Play">▶</button>
           <input type="range" id="scrubber" min="0" step="1" value="0" aria-label="Position in the animation" />
           <span id="clock" class="clock">0.0 / 0.0 s</span>
-          <label class="icon sound-toggle" title="Sound in the preview and the MP4">
-            <input type="checkbox" name="sound" form="settings" aria-label="Sound" />
-          </label>
-          <input type="range" name="volume" form="settings" class="volume" min="0" max="1" step="0.05" aria-label="Volume" />
         </div>
 
         <div class="export">

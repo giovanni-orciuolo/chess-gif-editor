@@ -22,6 +22,11 @@ export class Timeline {
     return startHoldMs + this.plyCount * moveMs + pauses * pauseMs + endHoldMs;
   }
 
+  landsAtMs(ply: number): number {
+    const { moveMs, pauseMs, startHoldMs } = this.timing;
+    return startHoldMs + ply * (moveMs + pauseMs) + moveMs;
+  }
+
   frameAt(ms: number): Frame {
     const { moveMs, pauseMs, startHoldMs } = this.timing;
     const elapsed = ms - startHoldMs;

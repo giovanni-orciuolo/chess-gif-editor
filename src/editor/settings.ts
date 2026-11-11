@@ -12,6 +12,7 @@ export interface Settings {
   easing: EasingName;
   fps: number;
   playerBars: boolean;
+  sound: boolean;
   firstPly: number;
   lastPly: number;
   format: Format;
@@ -24,6 +25,7 @@ export const defaultSettings: Settings = {
   easing: 'easeInOut',
   fps: 30,
   playerBars: true,
+  sound: true,
   firstPly: 1,
   lastPly: 999,
   format: 'mp4',

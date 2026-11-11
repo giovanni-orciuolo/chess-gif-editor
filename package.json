@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "author": "Giovanni Orciuolo",
-  "license": "MIT",
+  "license": "AGPL-3.0-or-later",
   "dependencies": {
     "chess.js": "^1.4.0",
     "gifenc": "^1.0.3",

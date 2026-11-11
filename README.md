@@ -23,4 +23,4 @@ The build is plain static files. `Dockerfile` serves them with nginx, and `deplo
 
 ## Credits
 
-Code under the MIT license. Pieces are the cburnett set by Colin M.L. Burnett, under CC BY-SA 3.0. PGN parsing by chess.js, MP4 muxing by Mediabunny, GIF encoding by gifenc.
+Code under the GNU Affero General Public License, version 3 or later (see `LICENSE`). Pieces are the cburnett set by Colin M.L. Burnett, under CC BY-SA 3.0. The SFX, Piano, NES and Futuristic sound sets come from Lichess (https://github.com/lichess-org/lila) and were made by Enigmahack, under AGPLv3+. PGN parsing by chess.js, MP4 muxing by Mediabunny, GIF encoding by gifenc.

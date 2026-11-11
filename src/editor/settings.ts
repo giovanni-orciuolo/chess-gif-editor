@@ -13,6 +13,7 @@ export interface Settings {
   fps: number;
   playerBars: boolean;
   sound: boolean;
+  volume: number;
   firstPly: number;
   lastPly: number;
   format: Format;
@@ -26,6 +27,7 @@ export const defaultSettings: Settings = {
   fps: 30,
   playerBars: true,
   sound: true,
+  volume: 0.8,
   firstPly: 1,
   lastPly: 999,
   format: 'mp4',

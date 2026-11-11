@@ -15,6 +15,7 @@ export class Movie {
   readonly layout: Layout;
   readonly fps: number;
   readonly soundCues: SoundCue[];
+  readonly volume: number;
   private readonly game: Game;
   private readonly timeline: Timeline;
 
@@ -28,7 +29,8 @@ export class Movie {
     this.timeline = new Timeline(this.game.plies.length, settings.timing);
     this.layout = new Layout(settings.size, settings.playerBars);
     this.fps = settings.fps;
-    this.soundCues = settings.sound ? soundCues(this.game, settings.timing) : [];
+    this.soundCues = settings.sound && settings.volume > 0 ? soundCues(this.game, settings.timing) : [];
+    this.volume = settings.volume;
   }
 
   get durationMs(): number {
@@ -44,7 +46,7 @@ export class Movie {
   }
 
   soundtrack(): Promise<AudioBuffer> {
-    return renderSoundtrack(this.sounds, this.soundCues, this.durationMs);
+    return renderSoundtrack(this.sounds, this.soundCues, this.durationMs, this.volume);
   }
 
   createCanvas(): HTMLCanvasElement {

@@ -65,7 +65,7 @@ export class Preview {
   private play(cue: SoundCue): void {
     if (!this.audio || !this.movie) return;
     const source = new AudioBufferSourceNode(this.audio, { buffer: this.movie.sounds.buffer(cue.sound) });
-    source.connect(this.audio.destination);
+    source.connect(new GainNode(this.audio, { gain: this.movie.volume })).connect(this.audio.destination);
     source.start();
   }
 

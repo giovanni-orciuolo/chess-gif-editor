@@ -257,6 +257,43 @@ button,
   padding: 0;
 }
 
+.sound-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  color: var(--text);
+  font-size: 1.1rem;
+}
+
+.sound-toggle input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sound-toggle::before {
+  content: '\1F507';
+}
+
+.sound-toggle:has(input:checked)::before {
+  content: '\1F50A';
+}
+
+.sound-toggle:focus-within {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.transport .volume {
+  flex: 0 0 80px;
+}
+
+.transport:has(.sound-toggle input:not(:checked)) .volume {
+  opacity: 0.4;
+}
+
 .clock {
   font-variant-numeric: tabular-nums;
   color: var(--muted);

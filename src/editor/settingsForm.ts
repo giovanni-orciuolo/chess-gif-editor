@@ -25,9 +25,11 @@ export class SettingsForm {
   }
 
   onChange(listener: () => void): void {
-    this.form.addEventListener('input', (event) => {
-      if (isColor(event.target)) this.themeSelect.value = 'custom';
-      if (!notSettings.has((event.target as Field).name)) listener();
+    document.addEventListener('input', (event) => {
+      const field = event.target as Field;
+      if (field.form !== this.form) return;
+      if (isColor(field)) this.themeSelect.value = 'custom';
+      if (!notSettings.has(field.name)) listener();
     });
     this.themeSelect.addEventListener('change', listener);
   }
@@ -46,8 +48,7 @@ export class SettingsForm {
   }
 
   private fields(): Field[] {
-    const all = [...this.form.elements, ...document.querySelectorAll(`[form="${this.form.id}"]`)];
-    return all.filter((element): element is Field => isField(element) && !notSettings.has(element.name));
+    return [...this.form.elements].filter((element): element is Field => isField(element) && !notSettings.has(element.name));
   }
 }
 
@@ -61,7 +62,7 @@ function isColor(target: EventTarget | null): boolean {
 
 function valueOf(field: Field): unknown {
   if (field instanceof HTMLInputElement && field.type === 'checkbox') return field.checked;
-  if (field instanceof HTMLInputElement && field.type === 'number') return field.valueAsNumber || 0;
+  if (field instanceof HTMLInputElement && (field.type === 'number' || field.type === 'range')) return field.valueAsNumber || 0;
   if (field.name === 'fps') return Number(field.value);
   return field.value;
 }

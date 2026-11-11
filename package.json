@@ -1,0 +1,29 @@
+{
+  "name": "chess-gif-editor",
+  "version": "1.0.0",
+  "description": "Turn a PGN chess game into an animated MP4 or GIF in the browser",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "test": "vitest run",
+    "preview": "vite preview"
+  },
+  "author": "Giovanni Orciuolo",
+  "license": "MIT",
+  "dependencies": {
+    "chess.js": "^1.4.0",
+    "gifenc": "^1.0.3",
+    "mediabunny": "^1.65.2"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.0"
+  },
+  "private": true,
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/giovanni-orciuolo/chess-gif-editor.git"
+  }
+}

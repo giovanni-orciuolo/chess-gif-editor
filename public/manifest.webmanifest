@@ -1,0 +1,9 @@
+{
+  "name": "Chess GIF Editor",
+  "short_name": "Chess GIF",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1f1d1a",
+  "theme_color": "#1f1d1a",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

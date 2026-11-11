@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Turn a chess game in PGN format into an animated MP4 or GIF, entirely in your browser." />
+    <meta name="theme-color" content="#1f1d1a" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <title>Chess GIF Editor</title>
+  </head>
+  <body>
+    <header class="top">
+      <h1><span class="mark" aria-hidden="true">♞</span> Chess GIF Editor</h1>
+    </header>
+
+    <main class="workspace">
+      <form id="settings" class="panel" autocomplete="off">
+        <section>
+          <h2>Game</h2>
+          <textarea name="pgn" rows="7" spellcheck="false" placeholder="Paste a PGN exported from Chess.com"></textarea>
+          <div class="row">
+            <label class="button secondary">Open .pgn file<input type="file" name="pgnFile" accept=".pgn,text/plain" hidden /></label>
+            <button type="button" class="secondary" data-action="sample">Load sample</button>
+          </div>
+          <p class="message" id="pgn-status" role="status"></p>
+          <div class="grid two">
+            <label>From ply<input type="number" name="firstPly" min="1" step="1" /></label>
+            <label>To ply<input type="number" name="lastPly" min="1" step="1" /></label>
+          </div>
+        </section>
+
+        <section>
+          <h2>Board</h2>
+          <div class="grid two">
+            <label>Theme
+              <select name="theme">
+                <option value="green">Green</option>
+                <option value="brown">Brown</option>
+                <option value="blue">Blue</option>
+                <option value="slate">Slate</option>
+                <option value="purple">Purple</option>
+                <option value="custom">Custom</option>
+              </select>
+            </label>
+            <label>Size (px)<input type="number" name="size" min="160" max="1600" step="8" /></label>
+          </div>
+          <div class="grid three colors">
+            <label>Light<input type="color" name="look.colors.light" /></label>
+            <label>Dark<input type="color" name="look.colors.dark" /></label>
+            <label>Highlight<input type="color" name="look.colors.highlight" /></label>
+          </div>
+          <div class="checks">
+            <label><input type="checkbox" name="look.flipped" /> Black at the bottom</label>
+            <label><input type="checkbox" name="look.coordinates" /> Coordinates</label>
+            <label><input type="checkbox" name="look.highlightMove" /> Highlight last move</label>
+            <label><input type="checkbox" name="playerBars" /> Player names</label>
+            <label><input type="checkbox" name="look.ratings" /> Ratings</label>
+            <label><input type="checkbox" name="look.moveLabel" /> Move label</label>
+          </div>
+        </section>
+
+        <section>
+          <h2>Animation</h2>
+          <div class="grid two">
+            <label>Move (ms)<input type="number" name="timing.moveMs" min="1" max="5000" step="50" /></label>
+            <label>Pause (ms)<input type="number" name="timing.pauseMs" min="0" max="10000" step="50" /></label>
+            <label>Start hold (ms)<input type="number" name="timing.startHoldMs" min="0" max="20000" step="100" /></label>
+            <label>End hold (ms)<input type="number" name="timing.endHoldMs" min="0" max="20000" step="100" /></label>
+            <label>Easing
+              <select name="easing">
+                <option value="easeInOut">Ease in-out</option>
+                <option value="easeOut">Ease out</option>
+                <option value="linear">Linear</option>
+              </select>
+            </label>
+            <label>Frames per second
+              <select name="fps">
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+                <option value="30">30</option>
+                <option value="50">50</option>
+                <option value="60">60</option>
+              </select>
+            </label>
+          </div>
+        </section>
+      </form>
+
+      <section class="stage">
+        <div class="canvas-frame"><canvas id="preview" aria-label="Animated board preview"></canvas></div>
+        <div class="transport">
+          <button type="button" id="play" class="icon" aria-label="Play">▶</button>
+          <input type="range" id="scrubber" min="0" step="1" value="0" aria-label="Position in the animation" />
+          <span id="clock" class="clock">0.0 / 0.0 s</span>
+        </div>
+
+        <div class="export">
+          <div class="formats" role="radiogroup" aria-label="Output format">
+            <label><input type="radio" name="format" value="mp4" form="settings" /> MP4</label>
+            <label><input type="radio" name="format" value="gif" form="settings" /> GIF</label>
+          </div>
+          <button type="button" id="export" class="primary">Export</button>
+          <button type="button" id="cancel" class="secondary" hidden>Cancel</button>
+        </div>
+        <progress id="progress" max="1" value="0" hidden></progress>
+        <p class="message" id="export-status" role="status"></p>
+        <div id="result" class="result" hidden>
+          <a id="download" class="button primary" download>Download</a>
+          <div id="result-media"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <p class="credits">
+        Made with <span class="heart" aria-label="love">♥</span> by
+        <a href="https://giovanni.orciuolo.it" target="_blank" rel="noopener">Giovanni Orciuolo</a>
+        <span aria-hidden="true">·</span>
+        <a href="https://github.com/giovanni-orciuolo/chess-gif-editor" target="_blank" rel="noopener">Source on GitHub</a>
+      </p>
+      <a class="coffee" href="https://ko-fi.com/giovanni_or2" target="_blank" rel="noopener">☕ Buy me a coffee</a>
+      <p class="attribution">Pieces: cburnett set by Colin M.L. Burnett, CC BY-SA 3.0.</p>
+    </footer>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+services:
+  app:
+    build: .
+    image: chess-gif-editor
+    container_name: chess-gif-editor
+    restart: unless-stopped
+    networks:
+      - or2-proxy
+
+networks:
+  or2-proxy:
+    external: true
+    name: or2-proxy_default

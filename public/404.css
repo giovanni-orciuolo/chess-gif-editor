@@ -1,0 +1,11 @@
+body {
+  background: #1f1d1a;
+  color: #ecebe9;
+  font-family: system-ui, sans-serif;
+  text-align: center;
+  padding: 64px 16px;
+}
+
+a {
+  color: #81b64c;
+}

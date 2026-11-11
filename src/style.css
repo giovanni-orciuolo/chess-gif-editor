@@ -39,7 +39,8 @@ h1 {
   gap: 10px;
 }
 
-.mark {
+h1::before {
+  content: '♞';
   color: var(--accent);
   font-size: 1.8rem;
 }

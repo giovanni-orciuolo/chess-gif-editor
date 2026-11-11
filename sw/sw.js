@@ -25,8 +25,7 @@ self.addEventListener('fetch', (event) => {
 async function networkFirst(request) {
   try {
     const response = await fetch(request);
-    const cache = await caches.open(cacheName);
-    await cache.put('/', response.clone());
+    if (response.ok && new URL(request.url).pathname === '/') await (await caches.open(cacheName)).put('/', response.clone());
     return response;
   } catch {
     return (await caches.match('/')) ?? Response.error();

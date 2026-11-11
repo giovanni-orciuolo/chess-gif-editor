@@ -72,7 +72,7 @@ export class ExportPanel {
 
 function mediaFor(type: string, url: string): HTMLElement {
   if (type === 'image/gif') return Object.assign(document.createElement('img'), { src: url, alt: 'Exported GIF' });
-  return Object.assign(document.createElement('video'), { src: url, controls: true, loop: true, muted: true, autoplay: true });
+  return Object.assign(document.createElement('video'), { src: url, controls: true, loop: true });
 }
 
 function megabytes(bytes: number): string {

@@ -3,11 +3,96 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Turn a chess game in PGN format into an animated MP4 or GIF, entirely in your browser." />
+    <title>Chess GIF Editor: PGN to Animated GIF or MP4 Video</title>
+    <meta name="description" content="Free chess GIF maker: turn a PGN game from Chess.com or Lichess into an animated GIF or MP4 video. Runs in your browser, works offline, no sign-up." />
+    <meta name="author" content="Giovanni Orciuolo" />
     <meta name="theme-color" content="#1f1d1a" />
+    <link rel="canonical" href="https://chess.orciuolo.it/" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
-    <title>Chess GIF Editor</title>
+    <link rel="author" href="https://giovanni.orciuolo.it" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Chess GIF Editor" />
+    <meta property="og:url" content="https://chess.orciuolo.it/" />
+    <meta property="og:title" content="Chess GIF Editor: turn any PGN chess game into a GIF or MP4" />
+    <meta property="og:description" content="Paste a PGN from Chess.com or Lichess and download an animated GIF or MP4 of the game. Free, offline, in your browser." />
+    <meta property="og:image" content="https://chess.orciuolo.it/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="A chess board next to the title Chess GIF Editor" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Chess GIF Editor: turn any PGN chess game into a GIF or MP4" />
+    <meta name="twitter:description" content="Paste a PGN from Chess.com or Lichess and download an animated GIF or MP4 of the game. Free, offline, in your browser." />
+    <meta name="twitter:image" content="https://chess.orciuolo.it/og-image.png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebApplication",
+            "@id": "https://chess.orciuolo.it/#app",
+            "name": "Chess GIF Editor",
+            "alternateName": ["Chess PGN to GIF converter", "Chess game to MP4 video maker"],
+            "url": "https://chess.orciuolo.it/",
+            "description": "Free browser tool that converts a chess game in PGN format into an animated GIF or MP4 video, with smooth piece movement, move sounds and custom board colors. It works offline and never uploads the game.",
+            "applicationCategory": "MultimediaApplication",
+            "operatingSystem": "Any (web browser)",
+            "browserRequirements": "MP4 export needs a browser with WebCodecs, such as Chrome, Edge or Safari. GIF export works in any modern browser.",
+            "isAccessibleForFree": true,
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+            "featureList": [
+              "Import PGN from Chess.com, Lichess or a .pgn file",
+              "Export animated GIF or MP4 video",
+              "Smooth animated piece movement with easing",
+              "Move, capture, castle, check and game-end sounds in MP4",
+              "Board themes, custom colors, size and orientation",
+              "Player names, ratings, coordinates and move labels",
+              "Choose which moves to include",
+              "Works offline; games never leave the device"
+            ],
+            "image": "https://chess.orciuolo.it/og-image.png",
+            "author": { "@id": "https://giovanni.orciuolo.it/#person" },
+            "license": "https://opensource.org/licenses/MIT",
+            "sameAs": ["https://github.com/giovanni-orciuolo/chess-gif-editor"]
+          },
+          {
+            "@type": "Person",
+            "@id": "https://giovanni.orciuolo.it/#person",
+            "name": "Giovanni Orciuolo",
+            "url": "https://giovanni.orciuolo.it",
+            "sameAs": ["https://github.com/giovanni-orciuolo"]
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Is Chess GIF Editor free?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Yes. There is no account, no watermark and no limit on the number of games." }
+              },
+              {
+                "@type": "Question",
+                "name": "Is my chess game uploaded anywhere?",
+                "acceptedAnswer": { "@type": "Answer", "text": "No. The GIF or MP4 is made inside your browser, and the game never leaves your device. After the first visit the tool also works offline." }
+              },
+              {
+                "@type": "Question",
+                "name": "Should I export a GIF or an MP4?",
+                "acceptedAnswer": { "@type": "Answer", "text": "MP4 files are much smaller and can include move sounds. A GIF plays everywhere without a video player but has no sound. MP4 export needs Chrome, Edge or Safari." }
+              },
+              {
+                "@type": "Question",
+                "name": "Which PGN files work?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Any standard PGN of a single game, including Chess.com and Lichess exports with clock comments, and games that start from a custom position set with a FEN tag." }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <header class="top">
@@ -57,6 +142,7 @@
             <label><input type="checkbox" name="playerBars" /> Player names</label>
             <label><input type="checkbox" name="look.ratings" /> Ratings</label>
             <label><input type="checkbox" name="look.moveLabel" /> Move label</label>
+            <label><input type="checkbox" name="sound" /> Sound (preview and MP4)</label>
           </div>
         </section>
 
@@ -112,6 +198,41 @@
         </div>
       </section>
     </main>
+
+    <article class="about">
+      <section>
+        <h2>Turn a chess game into an animated GIF or MP4</h2>
+        <p>
+          Chess GIF Editor converts a chess game in PGN format into an animated GIF or an MP4 video of the board.
+          Pieces slide from square to square, captured pieces fade out, and the MP4 can play a sound for every move,
+          capture, castle and check. Use it to share a game on social media, in a chat or in a blog post.
+        </p>
+      </section>
+
+      <section>
+        <h2>How to make a GIF or video of a chess game</h2>
+        <ol>
+          <li>Export the game as PGN. On Chess.com and Lichess, open the game and use its Share or Export option to copy or download the PGN.</li>
+          <li>Paste the PGN into the Game box above, or open the .pgn file.</li>
+          <li>Pick the board colors, size, speed and the range of moves to show.</li>
+          <li>Choose GIF or MP4, press Export, then Download.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>Questions</h2>
+        <dl>
+          <dt>Is it free?</dt>
+          <dd>Yes. There is no account, no watermark and no limit on the number of games.</dd>
+          <dt>Is my game uploaded anywhere?</dt>
+          <dd>No. The GIF or MP4 is made inside your browser, and the game never leaves your device. After the first visit the tool also works offline.</dd>
+          <dt>Should I export a GIF or an MP4?</dt>
+          <dd>MP4 files are much smaller and can include move sounds. A GIF plays everywhere without a video player but has no sound. MP4 export needs Chrome, Edge or Safari.</dd>
+          <dt>Which PGN files work?</dt>
+          <dd>Any standard PGN of a single game, including Chess.com and Lichess exports with clock comments, and games that start from a custom position set with a FEN tag.</dd>
+        </dl>
+      </section>
+    </article>
 
     <footer class="foot">
       <p class="credits">
